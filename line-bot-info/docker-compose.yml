@@ -1,0 +1,30 @@
+version: '3'
+services:
+  nginx:
+    container_name: line-bot-info
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    volumes:
+      #- ./html/:/var/www/html
+      #- ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
+      - ./:/etc/nginx/conf.d:ro
+    networks:
+      - webproxy
+      #- default
+      - info
+    environment:
+      VIRTUAL_HOST: info.vpsmacus.com
+      LETSENCRYPT_HOST: info.vpsmacus.com
+    expose:
+      - "80"
+networks:
+  #default:
+  #  external:
+  #    name:
+  #      web_network
+  webproxy:
+    external:
+      name: webproxy
+  info:
+    external:
+      name: info-line-bot_default
