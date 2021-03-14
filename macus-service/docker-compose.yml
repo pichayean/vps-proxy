@@ -1,0 +1,27 @@
+version: '3'
+services:
+  nginx:
+    container_name: line-bot-info
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    volumes:
+      - ./:/etc/nginx/conf.d:ro
+    networks:
+      - webproxy
+      - macusserviceproxy
+    environment:
+      VIRTUAL_HOST: macusapi.vpsmacus.com
+      LETSENCRYPT_HOST: macusapi.vpsmacus.com
+    expose:
+      - "80"
+networks:
+  #default:
+  #  external:
+  #    name:
+  #      web_network
+  webproxy:
+    external:
+      name: webproxy
+  macusserviceproxy:
+    external:
+      name: macus-service_reverse-proxy
