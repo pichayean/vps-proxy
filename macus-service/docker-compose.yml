@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-    container_name: line-bot-info
+    container_name: macus-service-api
     image: nginx:stable-alpine
     restart: unless-stopped
     volumes:
