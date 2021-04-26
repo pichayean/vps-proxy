@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-    container_name: line-bot-info
+    container_name: line-bot-info-proxy
     image: nginx:stable-alpine
     restart: unless-stopped
     volumes:
@@ -13,8 +13,8 @@ services:
       #- default
       - info
     environment:
-      VIRTUAL_HOST: info.vpsmacus.com
-      LETSENCRYPT_HOST: info.vpsmacus.com
+      VIRTUAL_HOST: infos.vpsmacus.com
+      LETSENCRYPT_HOST: infos.vpsmacus.com
     expose:
       - "80"
 networks:
